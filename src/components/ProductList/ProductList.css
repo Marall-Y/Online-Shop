@@ -1,0 +1,8 @@
+.list {
+  display: flex;
+  width: 100%;
+  text-align: center;
+}
+.card {
+  margin: 1rem;
+}

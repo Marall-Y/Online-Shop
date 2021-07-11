@@ -1,0 +1,68 @@
+.footer {
+  width: 100%;
+  height: 30vh;
+  background-color: #302c29;
+  display: flex;
+  justify-content: space-around;
+  padding: 1.5rem 0;
+  position: relative;
+  align-items: flex-start;
+}
+.footer-text {
+  text-transform: uppercase;
+}
+.footer-heading {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: rgb(245, 231, 39);
+}
+.footer-paragraph {
+  font-size: 0.8rem;
+  color: #888;
+}
+.signup-form {
+  display: flex;
+  align-items: center;
+}
+.signup-form-input {
+  width: 15rem;
+  height: 1rem;
+  border: 0.2rem solid rgb(238, 185, 39);
+  padding: 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1rem;
+  color: rgb(151, 70, 3);
+  border-radius: 0.3rem;
+  -webkit-border-radius: 0.3rem;
+  -moz-border-radius: 0.3rem;
+  -ms-border-radius: 0.3rem;
+  -o-border-radius: 0.3rem;
+}
+.signup-form-input::placeholder {
+  color: rgb(212, 114, 1);
+}
+.signup-form-btn {
+  position: relative;
+  left: -1rem;
+  width: 0.9rem;
+  height: 1.7rem;
+  background-color: #333;
+  color: rgb(221, 149, 40);
+  font-size: 0.5rem;
+  border: none;
+  cursor: pointer;
+  padding: 0.1rem;
+}
+.copyright {
+  position: absolute;
+  bottom: 0.1rem;
+  font-size: 1rem;
+  font-weight: 200;
+  color: #eee;
+  letter-spacing: 0.1rem;
+  border-top: 0.1rem solid #888;
+  padding-top: 1rem;
+  width: 100%;
+  text-align: center;
+}
