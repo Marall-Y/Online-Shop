@@ -1,15 +1,15 @@
 import React from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
 
-import "./ProductList.css";
+import "./ListWomen.css";
 
-const ProductList = ({ products }) => {
+const ListWomen = ({ products }) => {
   return (
     <Row className="list">
       {products.map((item) => (
-        <Col>
+        <Col key={item.id}>
           <Card style={{ width: "15rem" }} className="card">
-            <Card.Img variant="top" src="holder.js/100px180" />
+            <Card.Img variant="top" src={item.url} />
             <Card.Body>
               <Card.Title>{item.title}</Card.Title>
               <Card.Text>{item.price}</Card.Text>
@@ -22,4 +22,4 @@ const ProductList = ({ products }) => {
   );
 };
 
-export default ProductList;
+export default ListWomen;

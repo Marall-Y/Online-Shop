@@ -1,23 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
+import axios from "axios";
 
-import ProductList from "../../components/ProductList/ProductList";
+import ListWomen from "../../components/ListWomen/ListWomen";
+import Pagination from "../../components/UI/Pagination/Pagination";
+import { paginate } from "../../utils/paginate";
 
 import "./Women.css";
 
 const Women = () => {
-  const [products, setProducts] = useState([
-    { title: "Women Shirt", Price: "$100" },
-    { title: "Women Shirt", Price: "$200" },
-    { title: "Women Shirt", Price: "$1300" },
-    { title: "Women Shirt", Price: "$400" },
-    { title: "Women Shirt", Price: "$1050" },
-    { title: "Women Shirt", Price: "$1600" },
-  ]);
+  const [womenProducts, setWomenProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 6;
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://online-shop-49336-default-rtdb.firebaseio.com/products-women.json"
+      )
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+        setWomenProducts(data);
+        console.log(womenProducts);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [womenProducts]);
+
+  const changePageHandler = (page) => {
+    setCurrentPage(page);
+  };
+
+  const paginated = paginate(currentPage, pageSize, womenProducts);
 
   return (
-    <Container className="women-list">
-      <ProductList products={products} />
+    <Container className="men-list">
+      <ListWomen products={paginated} />
+      <Pagination
+        pageSize={pageSize}
+        itemsCount={womenProducts.length}
+        changePage={changePageHandler}
+        currentPage={currentPage}
+      />
     </Container>
   );
 };
