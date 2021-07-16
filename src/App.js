@@ -6,6 +6,7 @@ import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import Cart from "./pages/Cart/Cart";
 import Login from "./pages/Login/Login";
+import SignUp from "./pages/SignUp/SignUp";
 import Men from "./pages/Men/Men";
 import Women from "./pages/Women/Women";
 import Product from "./pages/Product/Product";
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/" component={Home} exact />
         <Route path="/cart/:id?" component={Cart} />
         <Route path="/login" component={Login} exact />
+        <Route path="/signUp" component={SignUp} exact />
         <Route path="/product/:id?" component={Product} />
         <Route path="/women" component={Women} exact />
         <Route path="/men" component={Men} exact />

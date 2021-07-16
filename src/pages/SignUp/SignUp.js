@@ -3,15 +3,23 @@ import Joi from "joi-browser";
 
 import { Input } from "../../components/UI/Input/Input";
 
-import "./Login.css";
-
-const Login = () => {
-  const [account, setAccount] = useState({ username: "", password: "" });
+const SignUp = () => {
+  const [account, setAccount] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
   const [errors, setErrors] = useState({});
 
   const schema = {
     username: Joi.string().required().label("Username"),
-    password: Joi.string().required().label("Password"),
+    email: Joi.string()
+      .required()
+      .email({
+        minDomainSegments: 2,
+      })
+      .label("Email"),
+    password: Joi.string().required().min(5).label("Password"),
   };
 
   const validate = () => {
@@ -40,7 +48,7 @@ const Login = () => {
     const errors = validate();
     setErrors({ errors });
 
-    setAccount({ username: "", password: "" });
+    setAccount({ username: "", password: "", email: "" });
   };
 
   const changeFormHandler = ({ target: input }) => {
@@ -56,16 +64,24 @@ const Login = () => {
 
   return (
     <div className="form-container">
-      <h1>Login</h1>
+      <h1>Create Account</h1>
       <form onSubmit={submitHandler}>
         <Input
           name="username"
           onChange={changeFormHandler}
           value={account.username}
           label="Username"
-          small={"Your Account Data won't be shown to anyone."}
           error={errors.username}
           type="text"
+        />
+        <Input
+          name="email"
+          onChange={changeFormHandler}
+          value={account.email}
+          label="Email"
+          small={"Your Email won't be shown to anyone."}
+          error={errors.email}
+          type="email"
         />
         <Input
           name="password"
@@ -76,11 +92,11 @@ const Login = () => {
           type="password"
         />
         <button disabled={validate()} className="btn btn-primary">
-          Login
+          Create
         </button>
       </form>
     </div>
   );
 };
 
-export default Login;
+export default SignUp;

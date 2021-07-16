@@ -1,3 +1,48 @@
 .nav-link {
   margin: 0.5rem 1rem;
 }
+.dropdown-menu {
+  background-color: #eee !important;
+}
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: #eee !important;
+}
+.sign-btn {
+  width: 11rem;
+  background-color: #000;
+  border-color: #000;
+  color: #fff;
+  font-weight: 400;
+  font-size: 0.9rem;
+  border-radius: 1rem;
+  padding: 0.3rem;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.2rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem;
+}
+
+.account-btn {
+  width: 11rem;
+  background-color: #fff;
+  border-color: #000;
+  color: #000;
+  font-weight: 400;
+  font-size: 0.9rem;
+  border-radius: 1rem;
+  padding: 0.3rem;
+  letter-spacing: 0.2rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem;
+}
+.sign-btn:hover,
+.sign-btn:active,
+.account-btn:hover,
+.account-btn:active {
+  background-color: rgb(126, 125, 125);
+}
