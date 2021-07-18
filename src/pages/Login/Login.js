@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Joi from "joi-browser";
 
 import { Input } from "../../components/UI/Input/Input";
@@ -6,12 +6,28 @@ import { Input } from "../../components/UI/Input/Input";
 import "./Login.css";
 
 const Login = () => {
-  const [account, setAccount] = useState({ username: "", password: "" });
+  const [account, setAccount] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
 
   const schema = {
-    username: Joi.string().required().label("Username"),
-    password: Joi.string().required().label("Password"),
+    email: Joi.string()
+      .required()
+      .email({
+        minDomainSegments: 2,
+      })
+      .label("Email"),
+    password: Joi.string().required().min(5).label("Password"),
+  };
+
+  const changeFormHandler = ({ target: input }) => {
+    const errorMessage = validateProperty(input);
+    if (errorMessage) {
+      setErrors((prevState) => ({ ...prevState, [input.name]: errorMessage }));
+    } else {
+      setErrors({ [input.name]: "" });
+    }
+
+    setAccount((prevState) => ({ ...prevState, [input.name]: input.value }));
   };
 
   const validate = () => {
@@ -40,18 +56,7 @@ const Login = () => {
     const errors = validate();
     setErrors({ errors });
 
-    setAccount({ username: "", password: "" });
-  };
-
-  const changeFormHandler = ({ target: input }) => {
-    const errorMessage = validateProperty(input);
-    if (errorMessage) {
-      setErrors((prevState) => ({ ...prevState, [input.name]: errorMessage }));
-    } else {
-      setErrors({ [input.name]: "" });
-    }
-
-    setAccount((prevState) => ({ ...prevState, [input.name]: input.value }));
+    setAccount({ email: "", password: "" });
   };
 
   return (
@@ -59,12 +64,12 @@ const Login = () => {
       <h1>Login</h1>
       <form onSubmit={submitHandler}>
         <Input
-          name="username"
+          name="email"
           onChange={changeFormHandler}
-          value={account.username}
-          label="Username"
-          small={"Your Account Data won't be shown to anyone."}
-          error={errors.username}
+          value={account.email}
+          label="Email"
+          small={"Your email won't be shown to anyone."}
+          error={errors.email}
           type="text"
         />
         <Input

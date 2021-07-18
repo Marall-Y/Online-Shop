@@ -1,15 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Joi from "joi-browser";
+import { Redirect } from "react-router";
 
 import { Input } from "../../components/UI/Input/Input";
+import { setItem } from "../../utils/LocalStorage";
+import { getItem } from "../../utils/LocalStorage";
+
+const initialData = localStorage.getItem("users") ? getItem("users") : [];
 
 const SignUp = () => {
+  const [data, setData] = useState(initialData);
   const [account, setAccount] = useState({
     username: "",
     email: "",
     password: "",
   });
+  const [hasAccount, setHasAccount] = useState(false);
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    const newData = [];
+    const arr = data.filter(function (item) {
+      if (newData.indexOf(item.email) == -1) {
+        newData.push(item.email);
+        setHasAccount(false);
+        return true;
+      } else {
+        setHasAccount(true);
+        return false;
+      }
+    });
+    console.log(newData);
+
+    setItem("users", arr);
+  }, [data]);
 
   const schema = {
     username: Joi.string().required().label("Username"),
@@ -44,11 +68,15 @@ const SignUp = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-
     const errors = validate();
     setErrors({ errors });
 
-    setAccount({ username: "", password: "", email: "" });
+    setData((prevState) => {
+      const newArray = [...prevState, { ...account }];
+      return newArray;
+    });
+
+    setAccount({ username: "", email: "", password: "" });
   };
 
   const changeFormHandler = ({ target: input }) => {
@@ -64,6 +92,7 @@ const SignUp = () => {
 
   return (
     <div className="form-container">
+      {hasAccount ? <Redirect to="/" /> : null}
       <h1>Create Account</h1>
       <form onSubmit={submitHandler}>
         <Input
@@ -73,6 +102,7 @@ const SignUp = () => {
           label="Username"
           error={errors.username}
           type="text"
+          hasAccount={hasAccount}
         />
         <Input
           name="email"

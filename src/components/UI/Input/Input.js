@@ -1,8 +1,22 @@
 import React from "react";
 
-export const Input = ({ name, label, value, small, onChange, error, type }) => {
+export const Input = ({
+  name,
+  label,
+  value,
+  small,
+  onChange,
+  error,
+  type,
+  hasAccount,
+}) => {
   return (
     <div className="form-group">
+      {hasAccount ? (
+        <div className="alert alert-danger">
+          An account already exists with this email address.
+        </div>
+      ) : null}
       <label htmlFor={name}>{label}</label>
       <input
         value={value}

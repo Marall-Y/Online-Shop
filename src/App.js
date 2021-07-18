@@ -26,7 +26,7 @@ const App = () => {
         <Route path="/product/:id?" component={Product} />
         <Route path="/women" component={Women} exact />
         <Route path="/men" component={Men} exact />
-        <Route path="/contact-us" component={Contact} exact />
+        <Route path="/contact" component={Contact} exact />
       </div>
       <Footer />
     </Router>
