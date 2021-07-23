@@ -9,6 +9,7 @@ export const Input = ({
   error,
   type,
   hasAccount,
+  emailFail,
 }) => {
   return (
     <div className="form-group">
@@ -17,6 +18,12 @@ export const Input = ({
           An account already exists with this email address.
         </div>
       ) : null}
+      {emailFail ? (
+        <div className="alert alert-danger">
+          Incorrect Email or Password, Please try again.
+        </div>
+      ) : null}
+
       <label htmlFor={name}>{label}</label>
       <input
         value={value}

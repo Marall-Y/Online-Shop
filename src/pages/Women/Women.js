@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import axios from "axios";
 
-import ListWomen from "../../components/ListWomen/ListWomen";
+import List from "../../components/List/List";
 import Pagination from "../../components/UI/Pagination/Pagination";
 import { paginate } from "../../utils/paginate";
 
@@ -20,9 +20,7 @@ const Women = () => {
       )
       .then((response) => {
         const data = response.data;
-        console.log(data);
         setWomenProducts(data);
-        console.log(womenProducts);
       })
       .catch((err) => {
         console.log(err);
@@ -37,7 +35,7 @@ const Women = () => {
 
   return (
     <Container className="men-list">
-      <ListWomen products={paginated} />
+      <List products={paginated} />
       <Pagination
         pageSize={pageSize}
         itemsCount={womenProducts.length}

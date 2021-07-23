@@ -20,14 +20,12 @@ const Men = () => {
       )
       .then((response) => {
         const data = response.data;
-        console.log(data);
         setProducts(data);
-        console.log(products);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [products]);
+  }, []);
 
   const changePageHandler = (page) => {
     setCurrentPage(page);

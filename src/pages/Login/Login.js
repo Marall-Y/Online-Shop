@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { Redirect } from "react-router";
 import Joi from "joi-browser";
 
 import { Input } from "../../components/UI/Input/Input";
+import { getItem } from "../../utils/LocalStorage";
 
 import "./Login.css";
 
 const Login = () => {
   const [account, setAccount] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
+  const [checkAccount, setcheckAccount] = useState({});
+  const [emailFail, setEmailFail] = useState(false);
 
   const schema = {
     email: Joi.string()
@@ -56,11 +60,27 @@ const Login = () => {
     const errors = validate();
     setErrors({ errors });
 
+    const foundAccount = getItem("users").find((item) => {
+      if (item.email === account.email && item.password === account.password) {
+        setEmailFail(false);
+        return true;
+      } else {
+        setEmailFail(true);
+
+        return false;
+      }
+    });
+
+    {
+      foundAccount ? setcheckAccount(foundAccount) : setcheckAccount({});
+    }
+
     setAccount({ email: "", password: "" });
   };
 
   return (
     <div className="form-container">
+      {Object.keys(checkAccount).length === 0 ? null : <Redirect to="/" />}
       <h1>Login</h1>
       <form onSubmit={submitHandler}>
         <Input
@@ -71,6 +91,7 @@ const Login = () => {
           small={"Your email won't be shown to anyone."}
           error={errors.email}
           type="text"
+          emailFail={emailFail}
         />
         <Input
           name="password"

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -9,8 +9,9 @@ import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import Men from "./pages/Men/Men";
 import Women from "./pages/Women/Women";
-import Product from "./pages/Product/Product";
+import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import Contact from "./pages/Contact/Contact";
+import Account from "./pages/Account/Account";
 
 import "./App.css";
 
@@ -19,14 +20,17 @@ const App = () => {
     <Router>
       <Header />
       <div className="main">
-        <Route path="/" component={Home} exact />
-        <Route path="/cart/:id?" component={Cart} />
-        <Route path="/login" component={Login} exact />
-        <Route path="/signUp" component={SignUp} exact />
-        <Route path="/product/:id?" component={Product} />
-        <Route path="/women" component={Women} exact />
-        <Route path="/men" component={Men} exact />
-        <Route path="/contact" component={Contact} exact />
+        <Switch>
+          <Route path="/" component={Home} exact />
+          <Route path="/cart/:id?" component={Cart} />
+          <Route path="/login" component={Login} exact />
+          <Route path="/signUp" component={SignUp} exact />
+          <Route path="/women" component={Women} exact />
+          <Route path="/men" component={Men} exact />
+          <Route path="/contact" component={Contact} exact />
+          <Route path="/account" component={Account} exact />
+          <Route path="/:id" component={ProductDetail} exact />
+        </Switch>
       </div>
       <Footer />
     </Router>

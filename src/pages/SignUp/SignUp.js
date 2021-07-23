@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Joi from "joi-browser";
-import { Redirect } from "react-router";
 
 import { Input } from "../../components/UI/Input/Input";
 import { setItem } from "../../utils/LocalStorage";
@@ -17,20 +16,21 @@ const SignUp = () => {
   });
   const [hasAccount, setHasAccount] = useState(false);
   const [errors, setErrors] = useState({});
+  const [signUp, setSignUp] = useState(false);
 
   useEffect(() => {
     const newData = [];
     const arr = data.filter(function (item) {
-      if (newData.indexOf(item.email) == -1) {
-        newData.push(item.email);
+      if (newData.indexOf(item.email) === -1) {
         setHasAccount(false);
+        newData.push(item.email);
+        setSignUp(true);
         return true;
       } else {
         setHasAccount(true);
         return false;
       }
     });
-    console.log(newData);
 
     setItem("users", arr);
   }, [data]);
@@ -92,7 +92,6 @@ const SignUp = () => {
 
   return (
     <div className="form-container">
-      {hasAccount ? <Redirect to="/" /> : null}
       <h1>Create Account</h1>
       <form onSubmit={submitHandler}>
         <Input

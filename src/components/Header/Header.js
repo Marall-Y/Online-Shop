@@ -46,6 +46,7 @@ const Header = () => {
               </NavDropdown.Item>
             </LinkContainer>
           </NavDropdown>
+
           <LinkContainer to="/cart">
             <Nav.Link>
               <i className="fa fa-shopping-cart fa-lg"></i>
