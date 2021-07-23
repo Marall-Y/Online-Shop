@@ -8,15 +8,26 @@ import { paginate } from "../../utils/paginate";
 
 import "./Men.css";
 
-const Men = () => {
+const Men = (props) => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 6;
 
   useEffect(() => {
+
+
+
+    if(props.match.url == '/men') {
+      console.log('request for men')
+    } else if(props.match.url == '/women') {
+      console.log('request for women')
+    }
+
+
+
     axios
       .get(
-        "https://online-shop-49336-default-rtdb.firebaseio.com/products.json"
+        `https://online-shop-49336-default-rtdb.firebaseio.com/products.json`
       )
       .then((response) => {
         const data = response.data;
