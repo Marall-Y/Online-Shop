@@ -19,10 +19,10 @@ const Header = () => {
           <Navbar.Brand>Online Shop</Navbar.Brand>
         </LinkContainer>
         <Nav>
-          <LinkContainer to="/men">
+          <LinkContainer to="/products/men">
             <Nav.Link>Men</Nav.Link>
           </LinkContainer>
-          <LinkContainer to="/women">
+          <LinkContainer to="/products/women">
             <Nav.Link>Women</Nav.Link>
           </LinkContainer>
           <LinkContainer to="/contact">

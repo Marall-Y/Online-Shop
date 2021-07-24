@@ -66,14 +66,11 @@ const Login = () => {
         return true;
       } else {
         setEmailFail(true);
-
         return false;
       }
     });
 
-    {
-      foundAccount ? setcheckAccount(foundAccount) : setcheckAccount({});
-    }
+    foundAccount ? setcheckAccount(foundAccount) : setcheckAccount({});
 
     setAccount({ email: "", password: "" });
   };

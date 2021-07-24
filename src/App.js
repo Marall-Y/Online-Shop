@@ -7,8 +7,7 @@ import Home from "./pages/Home/Home";
 import Cart from "./pages/Cart/Cart";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
-import Men from "./pages/Men/Men";
-import Women from "./pages/Women/Women";
+import Products from "./pages/Products/Products";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import Contact from "./pages/Contact/Contact";
 import Account from "./pages/Account/Account";
@@ -22,11 +21,11 @@ const App = () => {
       <div className="main">
         <Switch>
           <Route path="/" component={Home} exact />
-          <Route path="/cart/:id?" component={Cart} />
+          <Route path="/cart/:id?" component={Cart} exact />
           <Route path="/login" component={Login} />
           <Route path="/signUp" component={SignUp} />
-          <Route path="/women" component={Women} exact />
-          <Route path="/men" component={Men} exact />
+          <Route path="/products/men" component={Products} exact />
+          <Route path="/products/women" component={Products} exact />
           <Route path="/contact" component={Contact} />
           <Route path="/account" component={Account} />
           <Route path="/:id" component={ProductDetail} />

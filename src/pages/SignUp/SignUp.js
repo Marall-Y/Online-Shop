@@ -16,7 +16,6 @@ const SignUp = () => {
   });
   const [hasAccount, setHasAccount] = useState(false);
   const [errors, setErrors] = useState({});
-  const [signUp, setSignUp] = useState(false);
 
   useEffect(() => {
     const newData = [];
@@ -24,7 +23,6 @@ const SignUp = () => {
       if (newData.indexOf(item.email) === -1) {
         setHasAccount(false);
         newData.push(item.email);
-        setSignUp(true);
         return true;
       } else {
         setHasAccount(true);
