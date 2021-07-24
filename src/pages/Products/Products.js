@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 
 import List from "../../components/List/List";
 import Pagination from "../../components/UI/Pagination/Pagination";
+import Loading from "../../utils/Loading/Loading";
 import { paginate } from "../../utils/paginate";
 import { callApi } from "../../utils/callApi";
 
@@ -19,7 +20,7 @@ const Products = (props) => {
     } else if (props.match.url === "/products/women") {
       callApi("products-women.json", setProducts);
     }
-  }, [products]);
+  }, [products, props.match.url]);
 
   const changePageHandler = (page) => {
     setCurrentPage(page);
@@ -27,7 +28,7 @@ const Products = (props) => {
 
   const paginated = paginate(currentPage, pageSize, products);
 
-  return (
+  return products.length !== 0 ? (
     <Container className="men-list">
       <List products={paginated} />
       {products.length <= pageSize ? null : (
@@ -40,6 +41,10 @@ const Products = (props) => {
         />
       )}
     </Container>
+  ) : (
+    <div className="loading">
+      <Loading />
+    </div>
   );
 };
 

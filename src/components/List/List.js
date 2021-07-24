@@ -1,10 +1,13 @@
 import React from "react";
 import { Card, Button, Row, Col, Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import { useRouteMatch } from "react-router";
 
 import "./List.css";
 
 const List = ({ products }) => {
+  let { url } = useRouteMatch();
+
   return (
     <Container>
       <Row className="row justify-content-md-center">
@@ -12,11 +15,11 @@ const List = ({ products }) => {
           <LinkContainer
             key={item.id}
             to={{
-              pathname: `/${item.id}`,
+              pathname: `${url}/${item.id}`,
               data: products,
             }}
           >
-            <Col className=" d-flex justify-content-center">
+            <Col className=" d-flex justify-content-center mb-5">
               <Card className="card text-center" style={{ width: "15rem" }}>
                 <Card.Img variant="top" src={item.url} />
                 <Card.Body>
