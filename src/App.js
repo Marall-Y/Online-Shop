@@ -16,23 +16,26 @@ import "./App.css";
 
 const App = () => {
   return (
-    <Router>
-      <Header />
-      <div className="main">
-        <Switch>
-          <Route path="/" component={Home} exact />
-          <Route path="/cart/:id?" component={Cart} exact />
-          <Route path="/login" component={Login} />
-          <Route path="/signUp" component={SignUp} />
-          <Route path="/products/men" component={Products} exact />
-          <Route path="/products/women" component={Products} exact />
-          <Route path="/contact" component={Contact} />
-          <Route path="/account" component={Account} />
-          <Route path="/products/:url/:id" component={ProductDetail} />
-        </Switch>
-      </div>
-      <Footer />
-    </Router>
+    <React.StrictMode>
+      <Router>
+        <Header />
+        <div className="main">
+          <Switch>
+            <Route path="/" component={Home} exact />
+            <Route path="/cart/:id?" component={Cart} exact />
+            <Route path="/login" component={Login} />
+            <Route path="/signUp" component={SignUp} />
+            <Route path="/products/men" component={Products} exact />
+            <Route path="/products/women" component={Products} exact />
+            <Route path="/contact" component={Contact} />
+            <Route path="/account" component={Account} />
+            <Route path="/products/:url/:id" component={ProductDetail} />
+            <Route>404 Not Found!</Route>
+          </Switch>
+        </div>
+        <Footer />
+      </Router>
+    </React.StrictMode>
   );
 };
 

@@ -18,6 +18,10 @@ html {
   animation-direction: alternate;
   text-shadow: 0 0 1px white;
 }
+.proxy {
+  font-size: 0.9rem;
+  color: rgb(233, 15, 15);
+}
 
 @keyframes load {
   0% {

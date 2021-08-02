@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 import { callApi } from "../../utils/callApi";
 import Loading from "../../utils/Loading/Loading";
 import { ListGroup, Image, Row, Col, Button } from "react-bootstrap";
+import { addToCart } from "../../redux/actions/cart/cartAction";
 
 import "./ProductDetail.css";
 
 const ProductDetail = ({ location, match }) => {
   const [product, setProduct] = useState({});
+
+  const dispatch = useDispatch();
 
   // find product item from product list
   const findProduct = (ProductList) => {
@@ -31,17 +35,23 @@ const ProductDetail = ({ location, match }) => {
     <div className="details">
       <Row>
         <Col>
-          <Image src={product.url} />
+          <Image className="product-image" src={product.url} />
         </Col>
         <Col>
           <ListGroup variant="flush">
             <ListGroup.Item>{product.title}</ListGroup.Item>
             <ListGroup.Item>{product.description}</ListGroup.Item>
-            <ListGroup.Item>{product.price}</ListGroup.Item>
+            <ListGroup.Item style={{ fontWeight: "bold" }}>
+              ${product.price}
+            </ListGroup.Item>
           </ListGroup>
         </Col>
         <Col>
-          <Button type="button" className="btn btn-success">
+          <Button
+            onClick={() => dispatch(addToCart(product))}
+            type="button"
+            className="btn btn-success"
+          >
             Add to cart
           </Button>
         </Col>

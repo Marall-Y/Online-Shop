@@ -1,3 +1,6 @@
+.navbar {
+  z-index: 100;
+}
 .nav-link {
   margin: 0.5rem 1rem;
 }
@@ -7,6 +10,22 @@
 .dropdown-item.active,
 .dropdown-item:active {
   background-color: #eee !important;
+}
+.badge {
+  padding-left: 9px;
+  padding-right: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+
+#cartCount {
+  font-size: 12px;
+  background: #ff0000;
+  color: #fff;
+  padding: 0 5px;
+  vertical-align: top;
+  margin-left: -10px;
 }
 .sign-btn {
   width: 11rem;

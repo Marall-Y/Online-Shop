@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 
 import List from "../../components/List/List";
 import Pagination from "../../components/UI/Pagination/Pagination";
 import Loading from "../../utils/Loading/Loading";
 import { paginate } from "../../utils/paginate";
-import { callApi } from "../../utils/callApi";
+import { productsAction } from "../..//redux/actions/products/productAction";
 
 import "./Products.css";
 
-const Products = (props) => {
-  const [products, setProducts] = useState([]);
+const Products = ({ match }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 6;
 
+  const dispatch = useDispatch();
+  const productList = useSelector((state) => state.productList);
+
+  const { loading, products } = productList;
+
   useEffect(() => {
-    if (props.match.url === "/products/men") {
-      callApi("products.json", setProducts);
-    } else if (props.match.url === "/products/women") {
-      callApi("products-women.json", setProducts);
-    }
-  }, [products, props.match.url]);
+    dispatch(productsAction(match.url));
+  }, [dispatch, match.url]);
 
   const changePageHandler = (page) => {
     setCurrentPage(page);
@@ -28,22 +29,26 @@ const Products = (props) => {
 
   const paginated = paginate(currentPage, pageSize, products);
 
-  return products.length !== 0 ? (
-    <Container className="men-list">
-      <List products={paginated} />
-      {products.length <= pageSize ? null : (
-        <Pagination
-          className="pagination-style"
-          itemsCount={products.length}
-          pageSize={pageSize}
-          changePage={changePageHandler}
-          currentPage={currentPage}
-        />
+  return (
+    <div>
+      {loading ? (
+        <div className="loading">
+          <Loading />
+        </div>
+      ) : (
+        <Container className="men-list">
+          <List products={paginated} />
+          {products.length <= pageSize ? null : (
+            <Pagination
+              className="pagination-style"
+              itemsCount={products.length}
+              pageSize={pageSize}
+              changePage={changePageHandler}
+              currentPage={currentPage}
+            />
+          )}
+        </Container>
       )}
-    </Container>
-  ) : (
-    <div className="loading">
-      <Loading />
     </div>
   );
 };

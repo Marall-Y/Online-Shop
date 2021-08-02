@@ -6,10 +6,10 @@ import "./Home.css";
 const Home = () => {
   return (
     <div className="home">
-      <Link to="/men" className="home-button">
+      <Link to="/products/men" className="home-button">
         Men
       </Link>
-      <Link to="/women" className="home-button">
+      <Link to="/products/women" className="home-button">
         Women
       </Link>
     </div>

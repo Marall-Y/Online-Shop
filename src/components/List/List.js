@@ -19,12 +19,12 @@ const List = ({ products }) => {
               data: products,
             }}
           >
-            <Col className=" d-flex justify-content-center mb-5 col-4">
+            <Col className="d-flex justify-content-center mb-5 col-4">
               <Card className="card text-center" style={{ width: "15rem" }}>
                 <Card.Img variant="top" src={item.url} />
                 <Card.Body>
                   <Card.Title>{item.title}</Card.Title>
-                  <Card.Text>{item.price}</Card.Text>
+                  <Card.Text>${item.price}</Card.Text>
                   <Button variant="primary">Add</Button>
                 </Card.Body>
               </Card>

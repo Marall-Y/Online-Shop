@@ -3,7 +3,14 @@ import React from "react";
 import "./Loading.css";
 
 const Loading = () => {
-  return <h2 className="animate">Loading</h2>;
+  return (
+    <div>
+      <h2 className="animate">Loading</h2>
+      <p className="proxy">
+        If You're in Iran please make sure your proxy is on.
+      </p>
+    </div>
+  );
 };
 
 export default Loading;

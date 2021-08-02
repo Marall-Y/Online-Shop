@@ -1,19 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { Navbar, NavDropdown } from "react-bootstrap";
 import { Container, Nav } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 import "./Header.css";
 
 const Header = () => {
   const [show, setShow] = useState(false);
+  const [counter, setCounter] = useState(1);
 
+  const { cart } = useSelector((state) => state.cart);
+
+  useEffect(() => {
+    let count = 0;
+
+    cart.forEach((item) => {
+      count += item.qty;
+    });
+
+    setCounter(count);
+  }, [cart, counter]);
+
+  // Navbar Dropdown
   const showDropdown = (e) => {
     setShow(!show);
   };
 
   return (
-    <Navbar bg="dark" variant="dark">
+    <Navbar className="navbar" bg="dark" variant="dark">
       <Container>
         <LinkContainer to="/">
           <Navbar.Brand>Online Shop</Navbar.Brand>
@@ -50,6 +65,9 @@ const Header = () => {
           <LinkContainer to="/cart">
             <Nav.Link>
               <i className="fa fa-shopping-cart fa-lg"></i>
+              <span className="badge badge-warning" id="cartCount">
+                {counter}
+              </span>
             </Nav.Link>
           </LinkContainer>
         </Nav>
