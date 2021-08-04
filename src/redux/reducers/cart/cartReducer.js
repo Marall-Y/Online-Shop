@@ -6,16 +6,18 @@ export const cartReducer = (state = { cart: [] }, action) => {
     case actionTypes.ADD_TO_CART:
       // Check if Item is in cart already
       const inCart = state.cart.find((item) =>
-        item.id === action.data.id ? true : false
+        item.id === action.payload.data.id ? true : false
       );
 
       const newCart = {
         ...state,
         cart: inCart
           ? state.cart.map((item) =>
-              item.id === action.data.id ? { ...item, qty: item.qty + 1 } : item
+              item.id === action.payload.data.id
+                ? { ...item, qty: item.qty + 1 }
+                : item
             )
-          : [...state.cart, { ...action.data, qty: 1 }],
+          : [...state.cart, { ...action.payload.data, qty: 1 }],
       };
 
       setItem("cart", newCart);
@@ -24,8 +26,18 @@ export const cartReducer = (state = { cart: [] }, action) => {
     case actionTypes.REMOVE_FROM_CART:
       return {
         ...state,
-        cart: state.cart.filter((item) => item.id !== action.data.id),
+        cart: state.cart.filter((item) => item.id !== action.payload.data.id),
       };
+    case actionTypes.ADJUST_CART_QTY:
+      return {
+        ...state,
+        cart: state.cart.map((item) =>
+          item.id === action.payload.data.id
+            ? { ...item, qty: +action.payload.qty }
+            : item
+        ),
+      };
+
     default:
       return state;
   }

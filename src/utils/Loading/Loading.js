@@ -7,7 +7,7 @@ const Loading = () => {
     <div>
       <h2 className="animate">Loading</h2>
       <p className="proxy">
-        If You're in Iran please make sure your proxy is on.
+        If you're in Iran please make sure your proxy is on.
       </p>
     </div>
   );

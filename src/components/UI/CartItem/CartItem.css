@@ -53,3 +53,24 @@
   -ms-transform: scale(1.4);
   -o-transform: scale(1.4);
 }
+.cart-qty {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.cart-label {
+  font-weight: bold;
+  margin-bottom: 0;
+  margin-right: 0.2rem;
+}
+.cart-qty input {
+  width: 20%;
+  padding: 0.2rem;
+  margin-left: 0.4rem;
+  border-radius: 0.5rem;
+  outline: none;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+}

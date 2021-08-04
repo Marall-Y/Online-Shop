@@ -22,6 +22,7 @@ const ProductDetail = ({ location, match }) => {
   };
 
   useEffect(() => {
+    console.log(location);
     // call api again on refresh page
     if (location.data) {
       findProduct(location.data);
