@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router";
+import { useDispatch } from "react-redux";
 import Joi from "joi-browser";
 
 import { Input } from "../../components/UI/Input/Input";
 import { getItem } from "../../utils/LocalStorage";
+import { loginAction } from "../../redux/actions/login/loginAction";
 
 import "./Login.css";
 
@@ -12,6 +14,8 @@ const Login = () => {
   const [errors, setErrors] = useState({});
   const [checkAccount, setcheckAccount] = useState({});
   const [emailFail, setEmailFail] = useState(false);
+
+  const dispatch = useDispatch();
 
   const schema = {
     email: Joi.string()
@@ -71,6 +75,8 @@ const Login = () => {
     });
 
     foundAccount ? setcheckAccount(foundAccount) : setcheckAccount({});
+
+    dispatch(loginAction(foundAccount));
 
     setAccount({ email: "", password: "" });
   };

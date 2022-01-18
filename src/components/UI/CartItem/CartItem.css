@@ -11,9 +11,10 @@
 }
 .cart-image {
   object-fit: contain;
-  width: 200px;
+  /* width: 200px; */
   height: 200px;
   border-radius: 0.5rem 0 0 0.5rem;
+  cursor: pointer;
   -webkit-border-radius: 0.5rem 0 0 0.5rem;
   -moz-border-radius: 0.5rem 0 0 0.5rem;
   -ms-border-radius: 0.5rem 0 0 0.5rem;

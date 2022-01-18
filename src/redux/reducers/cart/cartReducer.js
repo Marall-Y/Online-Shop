@@ -1,7 +1,10 @@
 import { setItem } from "../../../utils/LocalStorage";
 import * as actionTypes from "../../actionTypes";
 
-export const cartReducer = (state = { cart: [] }, action) => {
+export const cartReducer = (
+  state = { cart: [], currentItem: null },
+  action
+) => {
   switch (action.type) {
     case actionTypes.ADD_TO_CART:
       // Check if Item is in cart already
@@ -37,7 +40,11 @@ export const cartReducer = (state = { cart: [] }, action) => {
             : item
         ),
       };
-
+    case actionTypes.LOAD_CURRENT_ITEM:
+      return {
+        ...state,
+        currenItem: action.payload.data,
+      };
     default:
       return state;
   }

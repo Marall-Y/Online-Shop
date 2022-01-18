@@ -1,0 +1,7 @@
+.navSpan {
+  cursor: grab;
+}
+.navItemDown {
+  border-bottom: solid 1px #888;
+  border-top: double 1px #222;
+}

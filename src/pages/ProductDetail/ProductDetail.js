@@ -14,15 +14,16 @@ const ProductDetail = ({ location, match }) => {
   const dispatch = useDispatch();
 
   // find product item from product list
-  const findProduct = (ProductList) => {
-    const productItem = ProductList.find(
-      (item) => item.id === +match.params.id
-    );
-    productItem && setProduct(productItem);
+  const findProduct = (products) => {
+    if (Array.isArray(products)) {
+      const productItem = products.find((item) => item.id === +match.params.id);
+      productItem && setProduct(productItem);
+    } else {
+      setProduct(products);
+    }
   };
 
   useEffect(() => {
-    console.log(location);
     // call api again on refresh page
     if (location.data) {
       findProduct(location.data);

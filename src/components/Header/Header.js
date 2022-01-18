@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { LinkContainer } from "react-router-bootstrap";
-import { Navbar, NavDropdown } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 import { Container, Nav } from "react-bootstrap";
 import { useSelector } from "react-redux";
+
+import NavDropDown from "../UI/DropDown/NavDropDown";
 
 import "./Header.css";
 
 const Header = () => {
-  const [show, setShow] = useState(false);
   const [counter, setCounter] = useState(1);
 
   const { cart } = useSelector((state) => state.cart);
@@ -21,11 +22,6 @@ const Header = () => {
 
     setCounter(count);
   }, [cart, counter]);
-
-  // Navbar Dropdown
-  const showDropdown = (e) => {
-    setShow(!show);
-  };
 
   return (
     <Navbar className="navbar" bg="dark" variant="dark">
@@ -43,25 +39,7 @@ const Header = () => {
           <LinkContainer to="/contact">
             <Nav.Link>Contact Us</Nav.Link>
           </LinkContainer>
-          <NavDropdown
-            title="Sign In"
-            id="collasible-nav-dropdown"
-            show={show}
-            onMouseEnter={showDropdown}
-            onMouseLeave={showDropdown}
-          >
-            <LinkContainer to="/login">
-              <NavDropdown.Item>
-                <button className="sign-btn">Sign In</button>
-              </NavDropdown.Item>
-            </LinkContainer>
-            <LinkContainer to="/signup">
-              <NavDropdown.Item>
-                <button className="account-btn">Create Account</button>
-              </NavDropdown.Item>
-            </LinkContainer>
-          </NavDropdown>
-
+          <NavDropDown />
           <LinkContainer to="/cart">
             <Nav.Link>
               <i className="fa fa-shopping-cart fa-lg"></i>

@@ -21,7 +21,7 @@ const CartItem = ({ itemData }) => {
     <div className="cart-item">
       <LinkContainer
         to={{
-          pathname: `/cart/${itemData.id}`,
+          pathname: `/products/${itemData.category}/${itemData.id}`,
           data: itemData,
         }}
       >
